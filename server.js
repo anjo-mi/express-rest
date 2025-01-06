@@ -29,6 +29,11 @@ let phonebook = [
     },
 ]
 
+app.get('/api/persons', (req,res) => {
+    console.log(phonebook)
+    res.json(phonebook)
+})
+
 
 app.listen(port, () => {
     console.log(`server listening on port:${port}`)
