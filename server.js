@@ -31,6 +31,7 @@ let phonebook = [
 
 app.get('/api/persons', (req,res) => {
     console.log(phonebook)
+    console.log('nodded')
     res.json(phonebook)
 })
 
