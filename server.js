@@ -58,7 +58,9 @@ app.delete('/api/persons/:id', (req,res) => {
 app.post('/api/persons', (req,res) => {
     const body = req.body
 
-    if (!body.name || !body.number){
+    const dupe = phonebook.find(person => person.name === body.name)
+
+    if (!body.name || !body.number || dupe){
         return res.status(400).json({error: 'invalid name or number'})
     }
 
