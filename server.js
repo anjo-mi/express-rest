@@ -48,6 +48,13 @@ app.get('/info', (req,res) => {
     res.send(`<p>The phonebook contains ${phonebook.length} entries</p><p>${date}</p>`)
 });
 
+app.delete('/api/persons/:id', (req,res) => {
+    const id = req.params.id
+    phonebook = phonebook.filter(person => person.id !== id)
+    console.log(phonebook)
+    res.status(204).end()
+});
+
 
 app.listen(port, () => {
     console.log(`server listening on port:${port}`)
