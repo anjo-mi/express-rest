@@ -29,6 +29,16 @@ let phonebook = [
     },
 ]
 
+app.use(requestLogger)
+
+const requestLogger = (req,res,next) => {
+    console.log('Method:', req.method)
+    console.log('Path:', req.path)
+    console.log('Body:', req.body)
+    console.log('---')
+    next()
+}
+
 app.get('/api/persons', (req,res) => {
     console.log(phonebook)
     console.log('nodded')
