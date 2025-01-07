@@ -35,6 +35,14 @@ app.get('/api/persons', (req,res) => {
     res.json(phonebook)
 })
 
+app.get('/api/persons/:id', (req,res) => {
+    const id = req.params.id
+    const person = phonebook.find(person => person.id === id)
+
+    if (person) res.send(person)
+    else res.status(400).json({error: 'no matching ID found'})
+});
+
 app.get('/info', (req,res) => {
     const date = new Date();
     res.send(`<p>The phonebook contains ${phonebook.length} entries</p><p>${date}</p>`)
