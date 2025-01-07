@@ -55,6 +55,23 @@ app.delete('/api/persons/:id', (req,res) => {
     res.status(204).end()
 });
 
+app.post('/api/persons', (req,res) => {
+    const body = req.body
+
+    if (!body.name || !body.number){
+        return res.status(400).json({error: 'invalid name or number'})
+    }
+
+    const person = {
+        id: crypto.randomUUID(),
+        name: body.name,
+        number: body.number
+    }
+
+    phonebook = phonebook.concat(person)
+    res.json(phonebook)
+});
+
 
 app.listen(port, () => {
     console.log(`server listening on port:${port}`)
